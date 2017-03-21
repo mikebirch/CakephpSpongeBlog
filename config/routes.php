@@ -5,19 +5,19 @@ use Cake\Routing\Route\DashedRoute;
 Router::plugin('CakephpSpongeBlog',  ['path' => '/news'], function ($routes) {
 
     $routes->connect('/', [
-      'controller' => 'blogPosts',
+      'controller' => 'BlogPosts',
       'action' => 'index',
     ]);
 
     $routes->connect('/latest', [
-      'controller' => 'blogPosts',
+      'controller' => 'BlogPosts',
       'action' => 'latest',
     ]);
 
     $routes->connect(
       '/:slug',
       [
-        'controller' => 'blogPosts',
+        'controller' => 'BlogPosts',
         'action' => 'view'
       ],
       [
