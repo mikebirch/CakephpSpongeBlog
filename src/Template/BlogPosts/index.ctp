@@ -8,7 +8,7 @@
   <article<?php if ($blogPost->sticky) {echo ' class="sticky"';} ?>>
 
     <header>
-      <h2><?= $this->Html->link(h($blogPost->title), ['controller' => 'blog_posts', 'action' => 'view', 'slug' => $blogPost->slug], ['title' => h($blogPost->title), 'rel' => 'bookmark']); ?></h2>
+      <h2><?= $this->Html->link(h($blogPost->title), ['controller' => 'blogPosts', 'action' => 'view', 'slug' => $blogPost->slug], ['title' => h($blogPost->title), 'rel' => 'bookmark']); ?></h2>
       <time datetime="<?= $this->Time->format($blogPost->created, 'YYYY-MM-dd HH:mm:ssZ'); ?>">
           <?= $this->Time->format($blogPost->created,'d MMM YYYY'); ?>
       </time>

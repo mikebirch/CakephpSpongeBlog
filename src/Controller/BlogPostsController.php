@@ -41,7 +41,7 @@ class BlogPostsController extends AppController
         return parent::isAuthorized($user);
     }
 
-    public function admin_index()
+    public function adminIndex()
     {
         $this->set('blogPosts', $this->paginate($this->BlogPosts));
         $this->set('_serialize', ['blogPosts']);
