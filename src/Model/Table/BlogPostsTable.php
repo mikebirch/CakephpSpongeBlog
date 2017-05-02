@@ -83,7 +83,8 @@ class BlogPostsTable extends Table
         return $this->find()
         ->where([
             'BlogPosts.published' => true
-        ]);
+        ])
+        ->order(['created' => 'desc']);
     }
 
     public function findLatest(Query $query, array $options)
