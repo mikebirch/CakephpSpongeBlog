@@ -21,8 +21,8 @@
             <?= $this->Delete->createForm(['action' => 'delete', $blogPost->id]) ?>
         </td>
         <td><?= h($blogPost->title) ?></td>
-        <td><?= h($blogPost->published) ?></td>
-        <td><?= h($blogPost->sticky) ?></td>
+        <td><?= h($blogPost->published) == 1 ? 'Yes' : 'No' ?></td>
+        <td><?= h($blogPost->sticky) == 1 ? 'Yes' : 'No' ?></td>
     </tr>
 
 <?php endforeach; ?>
