@@ -23,12 +23,6 @@ class BlogPostsController extends AppController
     {
         parent::initialize();
     }
-
-    /*public function beforeFilter(Event $event)
-    {
-        $this->Auth->allow(['index']);
-        parent::beforeFilter($event);
-    }*/
     
     public function isAuthorized($user = null)
     {
