@@ -84,17 +84,20 @@ class BlogPostsTable extends Table
         ->where([
             'BlogPosts.published' => true
         ])
-        ->order(['created' => 'desc']);
+        ->order(['sticky' => 'desc', 'created' => 'desc']);
+    }
+
+    public function findSlugged(Query $query, array $options)
+    {
+        $query->where([
+            'BlogPosts.slug' => $options['slug'],
+            'BlogPosts.published' => true
+        ]);
+        return $query;
     }
 
     public function findLatest(Query $query, array $options)
     {
-/*        return $this->find()
-        ->where([
-            'BlogPosts.published' => true
-        ])*/
-        
-
         $query->where([
             'BlogPosts.published' => true
         ])

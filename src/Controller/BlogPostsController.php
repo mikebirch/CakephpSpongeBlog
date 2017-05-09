@@ -75,9 +75,7 @@ class BlogPostsController extends AppController
      */
     public function view($slug = null)
     {
-        $blogPost = $this->BlogPosts
-            ->findBySlug($slug)
-            ->firstOrFail();
+        $blogPost = $this->BlogPosts->find('slugged', ['slug' => $slug])->firstOrFail();;
         $this->set('blogPost', $blogPost);
         $this->set('_serialize', ['blogPost']);
     }
