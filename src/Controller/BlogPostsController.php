@@ -38,7 +38,6 @@ class BlogPostsController extends AppController
     public function adminIndex()
     {
         $this->set('blogPosts', $this->paginate($this->BlogPosts));
-        $this->set('_serialize', ['blogPosts']);
         $this->viewBuilder()->layout('admin');
     }
 
@@ -48,7 +47,6 @@ class BlogPostsController extends AppController
             'finder' => 'published'
         ];
         $this->set('blogPosts', $this->paginate($this->BlogPosts));
-        $this->set('_serialize', ['blogPosts']);
     }
 
     public function latest()
@@ -71,7 +69,6 @@ class BlogPostsController extends AppController
     {
         $blogPost = $this->BlogPosts->find('slugged', ['slug' => $slug])->firstOrFail();;
         $this->set('blogPost', $blogPost);
-        $this->set('_serialize', ['blogPost']);
     }
 
     /**
@@ -92,7 +89,6 @@ class BlogPostsController extends AppController
             }
         }
         $this->set(compact('blogPost'));
-        $this->set('_serialize', ['blogPost']);
         $this->viewBuilder()->layout('admin');
     }
 
@@ -118,7 +114,6 @@ class BlogPostsController extends AppController
             }
         }
         $this->set(compact('blogPost'));
-        $this->set('_serialize', ['blogPost']);
         $this->viewBuilder()->layout('admin');
     }
 
