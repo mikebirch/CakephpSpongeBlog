@@ -78,15 +78,6 @@ class BlogPostsTable extends Table
         return $validator;
     }
 
-    public function findPublished(Query $query, array $options)
-    {
-        return $this->find()
-        ->where([
-            'BlogPosts.published' => true
-        ])
-        ->order(['sticky' => 'desc', 'created' => 'desc']);
-    }
-
     public function findSlugged(Query $query, array $options)
     {
         $query->where([

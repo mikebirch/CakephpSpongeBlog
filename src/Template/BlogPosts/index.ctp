@@ -1,4 +1,5 @@
 <?php $this->assign('title', 'News | ' . $settings['Site']['title']); ?>
+<?php $this->Paginator->options( [ 'url'=>[ 'sort'=>null, 'direction'=>null ] ] ) ?>
 <h1>News</h1>
 
 <?php if (!empty($blogPosts)) : ?>

@@ -3,6 +3,7 @@ namespace CakephpSpongeBlog\Controller;
 
 use CakephpSpongeBlog\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Core\Configure;
 
 /**
  * BlogPosts Controller
@@ -43,8 +44,11 @@ class BlogPostsController extends AppController
 
     public function index()
     {
+        $settings = Configure::read('settings');
         $this->paginate = [
-            'finder' => 'published'
+            'conditions' => ['BlogPosts.published' => true],
+            'limit' => $settings['blog']['number_posts_shown_on_index'],
+            'order' => ['sticky' => 'desc', 'created' => 'desc']
         ];
         $this->set('blogPosts', $this->paginate($this->BlogPosts));
     }
