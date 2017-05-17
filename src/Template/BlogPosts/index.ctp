@@ -8,6 +8,19 @@
 
   <article<?php if ($blogPost->sticky) {echo ' class="sticky"';} ?>>
 
+    <?php
+        $photo = $blogPost->photo;
+        if($photo){
+            echo $this->Html->image('/uploads/blogposts/photo/' . 
+                $blogPost->photo_dir . 
+                '/index_' . $photo, [
+                    'class' => 'blog-post-photo',
+                    'alt' => $blogPost->photo_alt
+                ]
+            ); 
+        }
+    ?>
+
     <header>
       <h2><?= $this->Html->link(h($blogPost->title), ['controller' => 'blogPosts', 'action' => 'view', 'slug' => $blogPost->slug], ['title' => h($blogPost->title), 'rel' => 'bookmark']); ?></h2>
       <time datetime="<?= $this->Time->format($blogPost->created, 'YYYY-MM-dd HH:mm:ssZ'); ?>">

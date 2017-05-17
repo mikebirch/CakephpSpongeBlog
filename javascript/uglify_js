@@ -1,0 +1,3 @@
+#!/bin/bash
+uglifyjs sb.js \
+ -c -o ../webroot/js/sb.min.js

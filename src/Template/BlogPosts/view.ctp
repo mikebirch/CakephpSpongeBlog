@@ -1,14 +1,26 @@
 <article class="blog-view">
-
-  <header class="blog-header">
+    <?php
+        $photo = $blogPost->photo;
+        if($photo){
+            echo $this->Html->image('/uploads/blogposts/photo/' . 
+                $blogPost->photo_dir . 
+                '/view_' . $photo, [
+                    'class' => 'blog-post-photo',
+                    'alt' => $blogPost->photo_alt
+                ]
+            ); 
+        }
+    ?>
+    <header class="blog-header">
     <h1 class="blog-title"><?= h($blogPost->title) ?></h1>
     <time datetime="<?= $this->Time->format($blogPost->created, 'YYYY-MM-dd HH:mm:ssZ'); ?>">
         <?= $this->Time->format($blogPost->created,'d MMM YYYY'); ?>
     </time>
-  </header>
-  <div class="blog-body">
-  <?= $blogPost->body ?>
-  </div>
+    </header>
+
+    <div class="blog-body">
+    <?= $blogPost->body ?>
+    </div>
 
 </article>
 

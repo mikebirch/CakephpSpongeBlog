@@ -47,7 +47,7 @@ class BlogPostsController extends AppController
         $settings = Configure::read('settings');
         $this->paginate = [
             'conditions' => ['BlogPosts.published' => true],
-            'limit' => $settings['blog']['number_posts_shown_on_index'],
+            'limit' => $settings['blog']['number_posts_on_post_index'],
             'order' => ['sticky' => 'desc', 'created' => 'desc']
         ];
         $this->set('blogPosts', $this->paginate($this->BlogPosts));

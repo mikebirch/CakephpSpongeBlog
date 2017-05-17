@@ -6,6 +6,9 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use CakephpSpongeBlog\Model\Entity\BlogPost;
+use Cake\Core\Configure;
+use Cake\Event\Event;
+use ArrayObject;
 
 /**
  * BlogPosts Model
@@ -22,11 +25,33 @@ class BlogPostsTable extends Table
      */
     public function initialize(array $config)
     {
+        $settings = Configure::read('settings');
         $this->table('blog_posts');
         $this->displayField('title');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Tools.Slugged', ['label' => 'title', 'unique' => true, 'case' => 'low']);
+        $this->addBehavior('Proffer.Proffer', [
+            'photo' => [
+                'root' => $settings['blog']['image-directory'],
+                'dir' => 'photo_dir',
+                'thumbnailSizes' => [ 
+                    'index' => ['w' => $settings['blog']['image-dimension-on-post-index'], 'h' => $settings['blog']['image-dimension-on-post-index'], 'fit' => true],  // used in index action and edit action
+                    'view' => [ // used in view action
+                        'jpeg_quality' => 75,
+                        'custom' => 'resize', 
+                        'params' => [
+                            $settings['blog']['max-image-width'], // 2x max width of containing element: #blogposts article
+                            null, 
+                            function ($constraint) { 
+                                $constraint->aspectRatio(); 
+                                $constraint->upsize(); 
+                            }
+                        ]
+                    ],
+                ],
+            ]
+        ]);
     }
 
     /**
@@ -50,6 +75,10 @@ class BlogPostsTable extends Table
             
         $validator
             ->allowEmpty('body');
+
+        $validator
+            ->requirePresence('photo', 'create')
+            ->allowEmpty('photo', 'update');
             
         $validator
             ->add('published', 'valid', ['rule' => 'boolean'])
