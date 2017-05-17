@@ -10,7 +10,7 @@
 
     <?php
         $photo = $blogPost->photo;
-        if($photo){
+        if($photo && $settings['blog']['display_image_on_post_index']){
             echo $this->Html->image('/uploads/blogposts/photo/' . 
                 $blogPost->photo_dir . 
                 '/index_' . $photo, [

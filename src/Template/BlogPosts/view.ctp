@@ -1,7 +1,7 @@
 <article class="blog-view">
     <?php
         $photo = $blogPost->photo;
-        if($photo){
+        if($photo && $settings['blog']['display_image_on_post_view']){
             echo $this->Html->image('/uploads/blogposts/photo/' . 
                 $blogPost->photo_dir . 
                 '/view_' . $photo, [
