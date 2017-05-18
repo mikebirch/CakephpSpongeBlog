@@ -21,7 +21,7 @@
     $photo = $blogPost->photo;
     if($photo && $settings['blog']['display_image_on_post_index']) : 
     ?>
-        <figure class="blog-view-figure">
+        <figure class="blog-index-figure">
         <?php
             echo $this->Html->image('/uploads/blogposts/photo/' . 
                 $blogPost->photo_dir . 
