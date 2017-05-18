@@ -1,6 +1,4 @@
-<?php $this->assign('title', 'News | ' . $settings['Site']['title']); ?>
-<?php $this->Paginator->options( [ 'url'=>[ 'sort'=>null, 'direction'=>null ] ] ) ?>
-<h1>News</h1>
+<h1><?= $settings['blog']['title'] ?></h1>
 
 <?php if (!empty($blogPosts)) : ?>
 
@@ -62,6 +60,8 @@ if($photo && $settings['blog']['display_image_on_post_index']) :
 
 <?php endforeach; ?>
 
+<?php $this->Paginator->options( [ 'url'=>[ 'sort'=>null, 'direction'=>null ] ] ) ?>
+
 <div class="paginator">
     <ul class="pagination">
         <?= $this->Paginator->prev('< ' . 'previous') ?>
@@ -75,3 +75,5 @@ if($photo && $settings['blog']['display_image_on_post_index']) :
 <p><?= 'Sorry, there are no news articles.' ?></p>
 
 <?php endif; ?>
+
+<?php $this->assign('title', $settings['blog']['title'] . ' | ' . $settings['Site']['title']); ?>
