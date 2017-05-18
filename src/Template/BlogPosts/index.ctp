@@ -6,7 +6,11 @@
 
 <?php foreach ($blogPosts as $blogPost) : ?>
 
-<article<?php if ($blogPost->sticky) {echo ' class="sticky"';} ?>>
+<?php 
+    $article_class = 'blog-post-index-article';
+    if ($blogPost->sticky) $article_class .= ' sticky';
+?>
+<article class="<?= $article_class ?>">
 <?php $link_url = $this->Url->build(
     [
         'controller' => 'blogPosts', 
