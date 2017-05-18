@@ -18,7 +18,7 @@ if($photo && $settings['blog']['display_image_on_post_view']) : ?>
        
     <header class="blog-view-header">
     <h1 class="blog-view-title"><?= h($blogPost->title) ?></h1>
-    <time datetime="<?= $this->Time->format($blogPost->created, 'YYYY-MM-dd HH:mm:ssZ'); ?>">
+    <time class="blog-view-time" datetime="<?= $this->Time->format($blogPost->created, 'YYYY-MM-dd HH:mm:ssZ'); ?>">
         <?= $this->Time->format($blogPost->created,'d MMM YYYY'); ?>
     </time>
     </header>
