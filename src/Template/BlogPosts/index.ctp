@@ -49,6 +49,7 @@ if($photo && $settings['blog']['display_image_on_post_index']) :
 
 <?php if (strtolower($settings['blog']['use_summary_or_body_on_post_index']) == 'summary') : ?>
             <div class="blog-post-index-summary"><?= $this->Text->autoParagraph(h($blogPost->summary)); ?></div>
+            <div class="blog-post-index-readmore">Read more »</div>
         </div>
     </a>
 <?php else : ?>
