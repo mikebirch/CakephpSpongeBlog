@@ -15,7 +15,7 @@
         ]
     ); ?>
     <?php if (strtolower($settings['blog']['use_summary_or_body_on_post_index']) == 'summary') : ?>
-    <a href="<?= $link_url ?>" rel="bookmark" title="<?= h($blogPost->title) ?>">
+    <a href="<?= $link_url ?>" rel="bookmark" title="<?= h($blogPost->title) ?>" class="blog-post-link">
     <?php endif ?>
     <?php
     $photo = $blogPost->photo;
