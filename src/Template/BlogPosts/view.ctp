@@ -32,4 +32,21 @@ if($photo && $settings['blog']['display_image_on_post_view']) : ?>
 <?php
 $this->assign('title', $blogPost->meta_title);
 $this->set('metaDescription', h($blogPost->meta_description));
+function breadcrumbPath($action, $slug) {
+    $link_url = $this->Url->build(
+        [
+            'controller' => 'blogPosts', 
+            'action' => 'view', 
+            'slug' => $slug
+        ]
+    );
+    return $link_url;
+}
+
+$breadcrumbs = [
+    ['path' => $this->Url->build(['controller' => 'blogPosts', 'action' => 'index']), 'title' => $settings['blog']['title']],
+    ['path' => $this->Url->build(['controller' => 'blogPosts', 'action' => 'view', $blogPost->slug]), 'title' => $blogPost->title]
+];
+$this->set('breadcrumbs', $breadcrumbs);
+$this->set('count_breadcrumbs', count($breadcrumbs));
 ?>
