@@ -30,7 +30,7 @@ if($photo && $settings['blog']['display_image_on_post_view']) : ?>
 </article>
 
 <?php
-$this->assign('title', $blogPost->meta_title . ' | ' . $settings['Site']['title']);
+$this->assign('title', $blogPost->title . ' | ' . $settings['Site']['title']);
 $this->set('metaDescription', h($blogPost->meta_description));
 if($settings['blog']['display_breadcrumbs_on_post_view']) {
     $breadcrumbs = [
