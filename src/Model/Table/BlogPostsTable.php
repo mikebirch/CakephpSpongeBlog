@@ -8,7 +8,7 @@ use Cake\Validation\Validator;
 use CakephpSpongeBlog\Model\Entity\BlogPost;
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use ArrayObject;
+use Cake\Cache\Cache;
 
 /**
  * BlogPosts Model
@@ -113,6 +113,9 @@ class BlogPostsTable extends Table
             'BlogPosts.slug' => $options['slug'],
             'BlogPosts.published' => true
         ]);
+        $query->cache(function ($q) use ($options) {
+            return 'blogpost-' . $options['slug'];
+        });
         return $query;
     }
 
@@ -124,5 +127,15 @@ class BlogPostsTable extends Table
         ->limit(2)
         ->order(['created' => 'desc']);
         return $query;
+    }
+
+    public function afterDelete(Event $event, $entity, $options)
+    {
+        Cache::delete('blogpost-' .  $entity->slug);
+    }
+
+    public function afterSave(Event $event, $entity, $options)
+    {
+        Cache::delete('blogpost-' .  $entity->slug);
     }
 }
