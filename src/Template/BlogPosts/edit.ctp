@@ -28,7 +28,6 @@
             echo $this->Form->input('in_rss');
             echo $this->Form->input('meta_title');
             echo $this->Form->input('meta_description');
-            echo $this->Form->input('meta_keywords');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

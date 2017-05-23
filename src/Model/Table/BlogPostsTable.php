@@ -100,9 +100,6 @@ class BlogPostsTable extends Table
             
         $validator
             ->allowEmpty('meta_description');
-            
-        $validator
-            ->allowEmpty('meta_keywords');
 
         return $validator;
     }

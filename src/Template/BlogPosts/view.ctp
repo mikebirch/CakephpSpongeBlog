@@ -31,7 +31,11 @@ if($photo && $settings['blog']['display_image_on_post_view']) : ?>
 
 <?php
 $this->assign('title', $blogPost->title . ' | ' . $settings['Site']['title']);
-$this->set('metaDescription', h($blogPost->meta_description));
+$this->Html->meta(
+    'description',
+    $blogPost->meta_description,
+    ['block' => true]
+);
 if($settings['blog']['display_breadcrumbs_on_post_view']) {
     $breadcrumbs = [
         ['path' => $this->Url->build(['controller' => 'blogPosts', 'action' => 'index']), 'title' => $settings['blog']['title']],
