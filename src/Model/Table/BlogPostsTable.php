@@ -132,10 +132,12 @@ class BlogPostsTable extends Table
     public function afterDelete(Event $event, $entity, $options)
     {
         Cache::delete('blogpost-' .  $entity->slug);
+        Cache::delete('news_cell');
     }
 
     public function afterSave(Event $event, $entity, $options)
     {
         Cache::delete('blogpost-' .  $entity->slug);
+        Cache::delete('news_cell');
     }
 }
