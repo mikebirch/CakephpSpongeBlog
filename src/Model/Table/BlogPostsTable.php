@@ -77,8 +77,15 @@ class BlogPostsTable extends Table
             ->allowEmpty('body');
 
         $validator
-            ->requirePresence('photo', 'create')
-            ->allowEmpty('photo', 'update');
+            ->add('photo', 'file', [
+            'rule' => ['uploadedFile', [
+                'optional' => true, 
+                'maxSize' => '1000000',
+                'types' => ['image/jpeg', 'image/png']
+            ]],
+            'message' => 'Photo must be a jpeg or png that is no larger than 1MB'
+        ])
+            ->allowEmpty('photo');
             
         $validator
             ->add('published', 'valid', ['rule' => 'boolean'])
