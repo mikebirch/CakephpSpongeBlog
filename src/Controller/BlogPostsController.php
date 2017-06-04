@@ -92,7 +92,8 @@ class BlogPostsController extends AppController
                 $this->Flash->error(__('The blog post could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('blogPost'));
+        $settings = Configure::read('settings');
+        $this->set(compact('blogPost', 'settings'));
         $this->viewBuilder()->layout('admin');
     }
 
@@ -117,7 +118,8 @@ class BlogPostsController extends AppController
                 $this->Flash->error(__('The blog post could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('blogPost'));
+        $settings = Configure::read('settings');
+        $this->set(compact('blogPost', 'settings'));
         $this->viewBuilder()->layout('admin');
     }
 
