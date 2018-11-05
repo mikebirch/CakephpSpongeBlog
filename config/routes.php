@@ -15,6 +15,31 @@ Router::plugin('CakephpSpongeBlog',  ['path' => '/news'], function ($routes) {
     ]);
 
     $routes->connect(
+      '/archive/:year', 
+      [
+        'controller' => 'BlogPosts',
+        'action' => 'archive',
+      ],
+      [
+        'pass' => ['year'],
+        'year' => '[0-9]+',
+      ]
+    );
+
+    $routes->connect(
+      '/archive/:year/:month', 
+      [
+        'controller' => 'BlogPosts',
+        'action' => 'archive',
+      ],
+      [
+        'pass' => ['year', 'month'],
+        'year' => '[0-9]+',
+        'month' => '[0-9]+'
+      ]
+    );
+
+    $routes->connect(
       '/:slug',
       [
         'controller' => 'BlogPosts',

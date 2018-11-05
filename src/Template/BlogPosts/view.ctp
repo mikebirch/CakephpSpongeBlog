@@ -45,3 +45,9 @@ if($settings['blog']['display_breadcrumbs_on_post_view']) {
     $this->set('count_breadcrumbs', count($breadcrumbs));
 }
 ?>
+
+<?php
+$this->start('sidebar');
+echo $this->cell('CakephpSpongeBlog.Archive', [], ['cache' => true]);
+$this->end(); 
+?>

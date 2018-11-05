@@ -133,6 +133,39 @@ class BlogPostsTable extends Table
         return $query;
     }
 
+    public function findArchive(Query $query, array $options)
+    {       
+        $query->where([
+            'BlogPosts.published' => true
+        ]);
+        $fdate = $query->func()->date_format([
+            'created' => 'identifier',
+            "'%Y %m'" => 'literal'
+        ]);
+        $year = $query->func()->date_format([
+            'created' => 'identifier',
+            "'%Y'" => 'literal'
+        ]);
+        $fullmonth = $query->func()->date_format([
+            'created' => 'identifier',
+            "'%M'" => 'literal'
+        ]);
+        $month = $query->func()->date_format([
+            'created' => 'identifier',
+            "'%m'" => 'literal'
+        ]);
+        $query->select([
+            'fdate' => $fdate,
+            'year' => $year,
+            'fullmonth' => $fullmonth,
+            'month' => $month,
+            'total_posts' => $query->func()->count('BlogPosts.id')
+        ])
+        ->order(['created' => 'desc'])
+        ->group('fdate');
+        return $query;
+    }
+
     public function afterDelete(Event $event, $entity, $options)
     {
         Cache::delete('blogpost-' .  $entity->slug);

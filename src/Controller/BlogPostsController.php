@@ -4,6 +4,7 @@ namespace CakephpSpongeBlog\Controller;
 use CakephpSpongeBlog\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Core\Configure;
+use Cake\Chronos\Chronos;
 
 /**
  * BlogPosts Controller
@@ -60,6 +61,35 @@ class BlogPostsController extends AppController
             $this->response->body($latestPosts);
             return $this->response;
         }
+    }
+
+    public function archive($year, $month=null)
+    {
+        if ($month == null) { // show news for year selected
+            $date = $year;
+            $time_year = Chronos::create()->year($year);
+            $conditions = [
+                'created >=' => $time_year->startOfYear(),
+                'created <=' => $time_year->endOfYear()
+            ];
+        } else { // show news for month selected
+            $date = date('F, Y', strtotime($year . '-' . $month . '-01'));
+            $time_month = Chronos::create()->year($year)->month($month);
+            $conditions = [
+                'created >=' => $time_month->startOfMonth(),
+                'created <=' => $time_month->endOfMonth()
+            ];
+        }
+        
+        $settings = Configure::read('settings');
+        $this->paginate = [
+            'conditions' => $conditions,
+            'limit' => $settings['blog']['number_posts_on_post_index'],
+            'order' => ['sticky' => 'desc', 'created' => 'desc']
+        ];
+        $this->set('blogPosts', $this->paginate($this->BlogPosts));
+        $this->set('archiveDate', $date);
+		$this->render('index');      
     }
 
     /**

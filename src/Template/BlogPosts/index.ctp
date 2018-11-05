@@ -75,5 +75,14 @@ if($photo && $settings['blog']['display_image_on_post_index']) :
 <p><?= 'Sorry, there are no news articles.' ?></p>
 
 <?php endif; ?>
-
+<?php if (isset($archiveDate)) : ?>
+<?php $this->assign('title', $settings['blog']['title'] . ' Archive '. $archiveDate . ' | ' . $settings['Site']['title']); ?>
+<?php else : ?>
 <?php $this->assign('title', $settings['blog']['title'] . ' | ' . $settings['Site']['title']); ?>
+<?php endif ?>
+
+<?php
+$this->start('sidebar');
+echo $this->cell('CakephpSpongeBlog.Archive', [], ['cache' => true]);
+$this->end(); 
+?>
