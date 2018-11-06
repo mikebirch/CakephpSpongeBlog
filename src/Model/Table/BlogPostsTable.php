@@ -169,12 +169,14 @@ class BlogPostsTable extends Table
     public function afterDelete(Event $event, $entity, $options)
     {
         Cache::delete('blogpost-' .  $entity->slug);
-        Cache::delete('cell_app_view_cell_news_cell_display_default');
+        Cache::delete('cell_cakephp_sponge_blog_view_cell_news_cell_display_default');
+        Cache::delete('cell_cakephp_sponge_blog_view_cell_archive_cell_display_default');
     }
 
     public function afterSave(Event $event, $entity, $options)
     {
         Cache::delete('blogpost-' .  $entity->slug);
-        Cache::delete('cell_app_view_cell_news_cell_display_default');
+        Cache::delete('cell_cakephp_sponge_blog_view_cell_news_cell_display_default');
+        Cache::delete('cell_cakephp_sponge_blog_view_cell_archive_cell_display_default');
     }
 }
