@@ -65,6 +65,7 @@ class BlogPostsController extends AppController
 
     public function archive($year, $month=null)
     {
+        // for conditions, see https://stackoverflow.com/a/16504544/354196
         if ($month == null) { // show news for year selected
             $date = $year;
             $time_year = Chronos::create()->year($year);
