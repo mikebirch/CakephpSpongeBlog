@@ -80,9 +80,10 @@ if($photo && $settings['blog']['display_image_on_post_index']) :
 <?php else : ?>
 <?php $this->assign('title', $settings['blog']['title'] . ' | ' . $settings['Site']['title']); ?>
 <?php endif ?>
-
+<?php if ($settings['blog']['display_archives_view_cell']) : ?>
 <?php
-$this->start('sidebar');
+$this->start($settings['blog']['archive_cell_region']);
 echo $this->cell('CakephpSpongeBlog.Archive', [], ['cache' => true]);
 $this->end(); 
 ?>
+<?php endif; ?>
