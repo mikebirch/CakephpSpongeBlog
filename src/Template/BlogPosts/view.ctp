@@ -46,8 +46,10 @@ if($settings['blog']['display_breadcrumbs_on_post_view']) {
 }
 ?>
 
+<?php if ($settings['blog']['display_archives_view_cell']) : ?>
 <?php
-$this->start('sidebar');
+$this->start($settings['blog']['archive_cell_region']);
 echo $this->cell('CakephpSpongeBlog.Archive', [], ['cache' => true]);
-$this->end(); 
+$this->end();
 ?>
+<?php endif; ?>
