@@ -1,2 +1,2 @@
-# CakephpSpongeBlog plugin for CakePHP
+# CakephpSpongeBlog plugin for CakePHP 3.3
 ```
