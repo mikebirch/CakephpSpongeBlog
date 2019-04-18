@@ -35,17 +35,17 @@ class BlogPostsTable extends Table
             'photo' => [
                 'root' => $settings['blog']['image-directory'],
                 'dir' => 'photo_dir',
-                'thumbnailSizes' => [ 
+                'thumbnailSizes' => [
                     'index' => ['w' => $settings['blog']['image-dimension-on-post-index'], 'h' => $settings['blog']['image-dimension-on-post-index'], 'fit' => true],  // used in index action and edit action
                     'view' => [ // used in view action
                         'jpeg_quality' => 75,
-                        'custom' => 'resize', 
+                        'custom' => 'resize',
                         'params' => [
                             $settings['blog']['max-image-width'], // 2x max width of containing element: #blogposts article
-                            null, 
-                            function ($constraint) { 
-                                $constraint->aspectRatio(); 
-                                $constraint->upsize(); 
+                            null,
+                            function ($constraint) {
+                                $constraint->aspectRatio();
+                                $constraint->upsize();
                             }
                         ]
                     ],
@@ -65,46 +65,46 @@ class BlogPostsTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create');
-            
+
         $validator
             ->requirePresence('title', 'create')
             ->notEmpty('title');
-            
+
         $validator
             ->allowEmpty('summary');
-            
+
         $validator
             ->allowEmpty('body');
 
         $validator
             ->add('photo', 'file', [
             'rule' => ['uploadedFile', [
-                'optional' => true, 
+                'optional' => true,
                 'maxSize' => '1000000',
                 'types' => ['image/jpeg', 'image/png']
             ]],
             'message' => 'Photo must be a jpeg or png that is no larger than 1MB'
         ])
             ->allowEmpty('photo');
-            
+
         $validator
             ->add('published', 'valid', ['rule' => 'boolean'])
             ->requirePresence('published', 'create')
             ->notEmpty('published');
-            
+
         $validator
             ->add('sticky', 'valid', ['rule' => 'boolean'])
             ->requirePresence('sticky', 'create')
             ->notEmpty('sticky');
-            
+
         $validator
             ->add('in_rss', 'valid', ['rule' => 'boolean'])
             ->requirePresence('in_rss', 'create')
             ->notEmpty('in_rss');
-            
+
         $validator
             ->allowEmpty('meta_title');
-            
+
         $validator
             ->allowEmpty('meta_description');
 
@@ -134,7 +134,7 @@ class BlogPostsTable extends Table
     }
 
     public function findArchive(Query $query, array $options)
-    {       
+    {
         $query->where([
             'BlogPosts.published' => true
         ]);
