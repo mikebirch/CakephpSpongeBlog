@@ -26,9 +26,9 @@ class BlogPostsTable extends Table
     public function initialize(array $config)
     {
         $settings = Configure::read('settings');
-        $this->table('blog_posts');
-        $this->displayField('title');
-        $this->primaryKey('id');
+        $this->setTable('blog_posts');
+        $this->setDisplayField('title');
+        $this->setPrimaryKey('id');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Tools.Slugged', ['label' => 'title', 'unique' => true, 'case' => 'low']);
         $this->addBehavior('Proffer.Proffer', [
