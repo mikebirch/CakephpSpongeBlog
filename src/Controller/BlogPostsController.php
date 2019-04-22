@@ -40,7 +40,7 @@ class BlogPostsController extends AppController
     public function adminIndex()
     {
         $this->set('blogPosts', $this->paginate($this->BlogPosts));
-        $this->viewBuilder()->layout('admin');
+        $this->viewBuilder()->setLayout('admin');
     }
 
     public function index()
@@ -125,7 +125,7 @@ class BlogPostsController extends AppController
         }
         $settings = Configure::read('settings');
         $this->set(compact('blogPost', 'settings'));
-        $this->viewBuilder()->layout('admin');
+        $this->viewBuilder()->setLayout('admin');
     }
 
     /**
@@ -151,7 +151,7 @@ class BlogPostsController extends AppController
         }
         $settings = Configure::read('settings');
         $this->set(compact('blogPost', 'settings'));
-        $this->viewBuilder()->layout('admin');
+        $this->viewBuilder()->setLayout('admin');
     }
 
     /**
