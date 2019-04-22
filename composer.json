@@ -3,10 +3,8 @@
     "description": "Blog plugin for CakePHP 3",
     "type": "cakephp-plugin",
     "require": {
-        "php": ">=5.5.9",
-        "cakephp/cakephp": "3.3.*",
-        "davidyell/proffer": "^0.8"
-
+        "cakephp/cakephp": "3.6.*",
+        "davidyell/proffer": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
