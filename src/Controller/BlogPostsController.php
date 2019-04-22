@@ -25,7 +25,7 @@ class BlogPostsController extends AppController
     {
         parent::initialize();
     }
-    
+
     public function isAuthorized($user = null)
     {
         $action = $this->request->params['action'];
@@ -55,7 +55,7 @@ class BlogPostsController extends AppController
     }
 
     public function latest()
-    {   
+    {
         $latestPosts = $this->BlogPosts->find('latest');
         if ($this->request->is('requested')) {
             $this->response->body($latestPosts);
@@ -81,7 +81,7 @@ class BlogPostsController extends AppController
                 'created <=' => $time_month->endOfMonth()
             ];
         }
-        
+
         $settings = Configure::read('settings');
         $this->paginate = [
             'conditions' => $conditions,
@@ -90,7 +90,7 @@ class BlogPostsController extends AppController
         ];
         $this->set('blogPosts', $this->paginate($this->BlogPosts));
         $this->set('archiveDate', $date);
-		$this->render('index');      
+		$this->render('index');
     }
 
     /**
