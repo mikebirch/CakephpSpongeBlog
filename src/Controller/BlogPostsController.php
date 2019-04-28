@@ -26,15 +26,10 @@ class BlogPostsController extends AppController
         parent::initialize();
     }
 
-    public function isAuthorized($user = null)
+    public function beforeFilter(Event $event)
     {
-        $action = $this->request->params['action'];
-
-        if (in_array($action, ['add'])) {
-            return (bool)($user['role'] === 'admin');
-        }
-
-        return parent::isAuthorized($user);
+        $this->Auth->allow(['index', 'view', 'archive']);
+        parent::beforeFilter($event);
     }
 
     public function adminIndex()
