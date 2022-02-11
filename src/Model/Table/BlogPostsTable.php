@@ -64,17 +64,16 @@ class BlogPostsTable extends Table
     {
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create');
-
+            ->allowEmptyString('create', 'id');
         $validator
             ->requirePresence('title', 'create')
-            ->notEmpty('title');
+            ->allowEmptyString('title');
 
         $validator
-            ->allowEmpty('summary');
+            ->allowEmptyString('summary');
 
         $validator
-            ->allowEmpty('body');
+            ->allowEmptyString('body');
 
         $validator
             ->add('photo', 'file', [
@@ -85,28 +84,28 @@ class BlogPostsTable extends Table
             ]],
             'message' => 'Photo must be a jpeg or png that is no larger than 1MB'
         ])
-            ->allowEmpty('photo');
+            ->allowEmptyFile('photo');
 
         $validator
             ->add('published', 'valid', ['rule' => 'boolean'])
             ->requirePresence('published', 'create')
-            ->notEmpty('published');
+            ->notEmptyString('published');
 
         $validator
             ->add('sticky', 'valid', ['rule' => 'boolean'])
             ->requirePresence('sticky', 'create')
-            ->notEmpty('sticky');
+            ->notEmptyString('sticky');
 
         $validator
             ->add('in_rss', 'valid', ['rule' => 'boolean'])
             ->requirePresence('in_rss', 'create')
-            ->notEmpty('in_rss');
+            ->notEmptyString('in_rss');
 
         $validator
-            ->allowEmpty('meta_title');
+            ->allowEmptyString('meta_title');
 
         $validator
-            ->allowEmpty('meta_description');
+            ->allowEmptyString('meta_description');
 
         return $validator;
     }
@@ -161,8 +160,8 @@ class BlogPostsTable extends Table
             'month' => $month,
             'total_posts' => $query->func()->count('BlogPosts.id')
         ])
-        ->order(['created' => 'desc'])
-        ->group('fdate');
+        ->order(['fdate' => 'desc'])
+        ->group(['fdate', 'year', 'fullmonth', 'month']);
         return $query;
     }
 

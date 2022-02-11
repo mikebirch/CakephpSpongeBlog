@@ -53,7 +53,7 @@ class BlogPostsController extends AppController
     {
         $latestPosts = $this->BlogPosts->find('latest');
         if ($this->request->is('requested')) {
-            $this->response->body($latestPosts);
+            $this->response->getBody($latestPosts);
             return $this->response;
         }
     }
