@@ -64,7 +64,7 @@ class BlogPostsTable extends Table
     {
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmptyString('create', 'id');
+            ->allowEmptyString('id', null, 'create');
         $validator
             ->requirePresence('title', 'create')
             ->allowEmptyString('title');
