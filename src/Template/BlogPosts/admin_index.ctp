@@ -1,6 +1,6 @@
 <h1>News</h1>
 
-<p><?php echo $this->Html->link('New post', array('action' => 'add'), array('class' => 'btn button')); ?></p>
+<p><?php echo $this->Html->link('New post', ['action' => 'add'], ['class' => 'btn button']); ?></p>
 
 <table cellpadding="0" cellspacing="0">
 <thead>
@@ -17,7 +17,7 @@
         <td class="actions">
             <?= $this->Html->link(__('View'), ['action' => 'view', $blogPost->slug]) ?>
             <?= $this->Html->link(__('Edit'), ['action' => 'edit', $blogPost->id]) ?>
-            
+
             <?= $this->Delete->createForm(['action' => 'delete', $blogPost->id]) ?>
         </td>
         <td><?= h($blogPost->title) ?></td>

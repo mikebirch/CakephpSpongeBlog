@@ -1,4 +1,4 @@
-<div id="archivelinks">	
+<div id="archivelinks">
 	<h2>News Archives</h2>
 	<ul id="archive">
         <?php $curr_year = ''; ?>
@@ -9,11 +9,22 @@
             </li>
         <?php endif; ?>
         <li>
-            <?php  echo $this->Html->link($archive->year, array('plugin'=>'CakephpSpongeBlog', 'controller'=>'BlogPosts',  'action'=>'archive', $archive->year)); ?>
+            <?php  echo $this->Html->link($archive->year, [
+                'plugin'=>'CakephpSpongeBlog',
+                'controller'=>'BlogPosts',
+                'action'=>'archive',
+                $archive->year
+            ]); ?>
         <ul>
     <?php endif; ?>
         <li>
-        <?php echo $this->Html->link($archive->fullmonth.'  ('.$archive->total_posts.')', array('plugin'=>'CakephpSpongeBlog', 'controller'=>'BlogPosts',  'action'=>'archive', $archive->year ,$archive->month )); ?>
+        <?php echo $this->Html->link($archive->fullmonth.'  ('.$archive->total_posts.')', [
+            'plugin'=>'CakephpSpongeBlog',
+            'controller'=>'BlogPosts',
+            'action'=>'archive',
+            $archive->year,
+            $archive->month
+        ]); ?>
             </li>
         <?php $curr_year = $archive->year; ?>
 <?php endforeach; ?>
