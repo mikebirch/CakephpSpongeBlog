@@ -110,7 +110,7 @@ class BlogPostsController extends AppController
     {
         $blogPost = $this->BlogPosts->newEntity();
         if ($this->request->is('post')) {
-            $blogPost = $this->BlogPosts->patchEntity($blogPost, $this->request->data);
+            $blogPost = $this->BlogPosts->patchEntity($blogPost, $this->request->getData());
             if ($this->BlogPosts->save($blogPost)) {
                 $this->Flash->success(__('The blog post has been saved.'));
                 return $this->redirect(['action' => 'admin_index']);
@@ -136,7 +136,7 @@ class BlogPostsController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $blogPost = $this->BlogPosts->patchEntity($blogPost, $this->request->data);
+            $blogPost = $this->BlogPosts->patchEntity($blogPost, $this->request->getData());
             if ($this->BlogPosts->save($blogPost)) {
                 $this->Flash->success(__('The blog post has been saved.'));
                 return $this->redirect(['action' => 'admin_index']);
